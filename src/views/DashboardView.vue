@@ -38,7 +38,8 @@
     <div className="text-sm font-Inter font-semibold leading-[24.5px] text-[#595959] self-start ml-4 relative">
       Dashboard
     </div>
-    <div className="flex flex-row justify-start mb-4 gap-2 relative w-5/6 items-center">
+
+    <div className="flex flex-row justify-start mb-4 gap-2 relative w-80 items-center">
       <div className="bg-white flex flex-col justify-start gap-2 relative w-1/2 h-32 items-start pt-3 pb-4 pl-3 rounded">
         <div className="text-xs font-Inter font-bold uppercase text-[#507047] mb-px relative">
           Farms
@@ -84,7 +85,8 @@
     <div className="text-sm font-Inter font-semibold leading-[24.5px] text-[#595959] self-start ml-4 relative">
       Latest
     </div>
-    <div className="bg-white flex flex-row justify-start gap-4 relative w-5/6 items-center px-2 rounded">
+
+    <div className="bg-white flex flex-row justify-start gap-4 relative w-80 items-center px-2 rounded">
       <img
         src="https://file.rendit.io/n/qmTfgDmvKgPOiWdFnYof.png"
         className="min-h-0 min-w-0 relative my-2"
@@ -108,7 +110,7 @@
         </div>
       </div>
     </div>
-    <div className="bg-white flex flex-row justify-start gap-4 relative w-5/6 items-center px-2 rounded">
+    <div className="bg-white flex flex-row justify-start gap-4 relative w-80 items-center px-2 rounded">
       <img
         src="https://file.rendit.io/n/4SPm344EhkxCVhR8hhst.png"
         className="min-h-0 min-w-0 relative my-2"
@@ -133,7 +135,7 @@
         </div>
       </div>
     </div>
-    <div className="bg-white flex flex-row justify-start gap-4 relative w-5/6 items-center pb-2 px-2 rounded">
+    <div className="bg-white flex flex-row justify-start gap-4 relative w-80 items-center pb-2 px-2 rounded">
       <img
         src="https://file.rendit.io/n/7uYDqCIY25p5xuqXO2np.png"
         className="min-h-0 min-w-0 mt-2 relative"
