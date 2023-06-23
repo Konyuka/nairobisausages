@@ -9,6 +9,10 @@ const routes = [
     path: "/dashboard",
     component: () => import("../views/DashboardView.vue"),
   },
+  {
+    path: "/submit_batch",
+    component: () => import("../views/BatchView.vue"),
+  },
 ];
 
 export const createRouter = () =>
