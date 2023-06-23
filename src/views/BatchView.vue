@@ -30,7 +30,7 @@
             src="https://file.rendit.io/n/mHTm4N5nXoSKm9EbVfza.svg"
             className="min-h-0 min-w-0 relative w-5 shrink-0"
           />
-          <div className="text-center text-xl font-['Inter'] font-bold leading-[24.5px] text-[#1c1b1f] relative w-4/5">
+          <div className="text-center text-xl font-Inter font-bold leading-[24.5px] text-[#1c1b1f] relative w-4/5">
             Nairobi Sausages
           </div>
           <img
@@ -40,10 +40,10 @@
         </div>
       </div>
       <div className="flex flex-row justify-between mb-2 relative w-5/6 items-center">
-        <div className="whitespace-nowrap text-sm font-['Inter'] font-semibold leading-[24.5px] text-[#595959] relative">
+        <div className="whitespace-nowrap text-sm font-Inter font-semibold leading-[24.5px] text-[#595959] relative">
           Submit a batch
         </div>
-        <div className="text-lg font-['Inter'] font-bold tracking-[0.47058823704719543] leading-[22.6px] text-[#507047] relative">
+        <div className="text-lg font-Inter font-bold tracking-[0.47058823704719543] leading-[22.6px] text-[#507047] relative">
           22
         </div>
       </div>
@@ -55,10 +55,10 @@
         />
       </div>
       <div className="flex flex-row justify-between mb-3 relative w-5/6 items-center">
-        <div className="text-sm font-['Inter'] font-semibold leading-[24.5px] text-black relative">
+        <div className="text-sm font-Inter font-semibold leading-[24.5px] text-black relative">
           0
         </div>
-        <div className="text-sm font-['Inter'] font-semibold leading-[24.5px] text-black relative">
+        <div className="text-sm font-Inter font-semibold leading-[24.5px] text-black relative">
           36
         </div>
       </div>
@@ -66,7 +66,7 @@
         Breed
       </div>
       <div className="overflow-hidden bg-[#eeeeee] flex flex-row justify-center mb-2 gap-4 relative w-5/6 h-12 shrink-0 items-center rounded">
-        <div className="font-['Inter'] tracking-[0.47058823704719543] leading-[22.6px] text-[#595959] relative w-4/5">
+        <div className="font-Inter tracking-[0.47058823704719543] leading-[22.6px] text-[#595959] relative w-4/5">
           Large White
         </div>
         <img
@@ -78,7 +78,7 @@
         Age
       </div>
       <div className="overflow-hidden bg-[#eeeeee] flex flex-col justify-center mb-2 pl-5 relative w-5/6 h-12 shrink-0 items-start rounded">
-        <div className="whitespace-nowrap font-['Inter'] tracking-[0.47058823704719543] leading-[22.6px] text-[#595959] relative">
+        <div className="whitespace-nowrap font-Inter tracking-[0.47058823704719543] leading-[22.6px] text-[#595959] relative">
           6 months
         </div>
       </div>
@@ -86,7 +86,7 @@
         Average weight
       </div>
       <div className="overflow-hidden bg-[#eeeeee] flex flex-col justify-center mb-2 pl-5 relative w-5/6 h-12 shrink-0 items-start rounded">
-        <div className="whitespace-nowrap font-['Inter'] tracking-[0.47058823704719543] leading-[22.6px] text-[#595959] relative">
+        <div className="whitespace-nowrap font-Inter tracking-[0.47058823704719543] leading-[22.6px] text-[#595959] relative">
           120 kgs
         </div>
       </div>
@@ -94,12 +94,12 @@
         Ask price per pig
       </div>
       <div className="overflow-hidden bg-[#eeeeee] flex flex-col justify-center mb-16 pl-5 relative w-5/6 h-12 shrink-0 items-start rounded">
-        <div className="font-['Inter'] tracking-[0.47058823704719543] leading-[22.6px] text-[#9d9d9d] relative">
+        <div className="font-Inter tracking-[0.47058823704719543] leading-[22.6px] text-[#9d9d9d] relative">
           0.00
         </div>
       </div>
       <div className="overflow-hidden bg-[#212427] flex flex-col justify-center relative w-5/6 h-12 shrink-0 items-center rounded-[40px]">
-        <div className="whitespace-nowrap font-['Inter'] font-bold tracking-[0.47058823704719543] leading-[22.6px] text-white relative">
+        <div className="whitespace-nowrap font-Inter font-bold tracking-[0.47058823704719543] leading-[22.6px] text-white relative">
           Submit Request
         </div>
       </div>

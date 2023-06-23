@@ -42,21 +42,21 @@
 
       <button
         className="overflow-hidden bg-[#212427] flex flex-col justify-center mb-3 relative w-5/6 h-12 shrink-0 items-center rounded-[40px]">
-        <div className="font-['Inter'] font-bold tracking-[0.47058823704719543] leading-[22.6px] text-white relative">
+        <div className="font-Inter font-bold tracking-[0.47058823704719543] leading-[22.6px] text-white relative">
           Login
         </div>
       </button>
 
       <div
-        className="whitespace-nowrap text-sm font-['Inter'] font-medium tracking-[0.47058823704719543] leading-[22.6px] text-[#595959] self-start justify-start relative mb-px ml-16">
+        className="whitespace-nowrap text-sm font-Inter font-medium tracking-[0.47058823704719543] leading-[22.6px] text-[#595959] self-start justify-start relative mb-px ml-16">
         Don’t have an account?
         <button
-          className="text-sm font-['Inter']  tracking-[0.47058823704719543] leading-[22.6px] text-[#507047] contents">
+          className="text-sm font-Inter  tracking-[0.47058823704719543] leading-[22.6px] text-[#507047] contents">
            <span class="underline-offset-4 underline">Register</span>
         </button>
       </div>
       <div
-        className="text-center whitespace-nowrap text-sm font-['Inter'] font-medium tracking-[0.47058823704719543] leading-[22.6px] text-[#507047] self-start ml-32 relative">
+        className="text-center whitespace-nowrap text-sm font-Inter font-medium tracking-[0.47058823704719543] leading-[22.6px] text-[#507047] self-start ml-32 relative">
          <span class="underline-offset-4 underline">Forgot Password</span>
       </div>
     </div>
