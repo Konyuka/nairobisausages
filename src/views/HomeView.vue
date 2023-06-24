@@ -1,4 +1,31 @@
 <script setup>
+import { ref } from "vue"
+import { useRouter } from 'vue-router'
+
+const user = ref({
+  email: "Peach",
+  password: "Cars",
+  isLoggedIn: false
+})
+const router = useRouter()
+
+
+const login = async () => {
+  if(user.value.email=='Peach' && user.value.password == 'Cars'){
+    user.value.isLoggedIn = true
+    localStorage.setItem('userEmail', user.value.email)
+    localStorage.setItem('isLoggedIn', user.value.isLoggedIn)
+    router.push('/dashboard')
+  }else{
+    alert(
+      "Username: Peach\nPassword: Cars"
+    )
+  }
+
+  
+}
+
+
 </script>
 
 <template>
@@ -29,7 +56,7 @@
         Enter your email address
       </div>
 
-      <input
+      <input v-model="user.email"
         className="overflow-hidden bg-[#eeeeee] flex flex-col justify-center mb-4 pl-5 relative w-5/6 h-12 shrink-0 items-start rounded"
         placeholder="Email address" />
 
@@ -37,10 +64,11 @@
         className="whitespace-nowrap text-sm font-sans tracking-[0.3764705955982208] leading-[15.1px] text-[#1c1b1f] self-start ml-8 relative">
         Enter your Password
       </div>
-      <input
-        className="overflow-hidden bg-[#eeeeee] flex flex-col justify-center mb-6 pl-5 relative w-5/6 h-12 shrink-0 items-start rounded" placeholder="Password"/>
+      <input v-model="user.password"
+        className="overflow-hidden bg-[#eeeeee] flex flex-col justify-center mb-6 pl-5 relative w-5/6 h-12 shrink-0 items-start rounded"
+        placeholder="Password" />
 
-      <button
+      <button @click="login"
         className="overflow-hidden bg-[#212427] flex flex-col justify-center mb-3 relative w-5/6 h-12 shrink-0 items-center rounded-[40px]">
         <div className="font-Inter font-bold tracking-[0.47058823704719543] leading-[22.6px] text-white relative">
           Login
@@ -50,14 +78,13 @@
       <div
         className="whitespace-nowrap text-sm font-Inter font-medium tracking-[0.47058823704719543] leading-[22.6px] text-[#595959] self-start justify-start relative mb-px ml-16">
         Don’t have an account?
-        <button
-          className="text-sm font-Inter  tracking-[0.47058823704719543] leading-[22.6px] text-[#507047] contents">
-           <span class="underline-offset-4 underline">Register</span>
+        <button className="text-sm font-Inter  tracking-[0.47058823704719543] leading-[22.6px] text-[#507047] contents">
+          <span class="underline-offset-4 underline">Register</span>
         </button>
       </div>
       <div
         className="text-center whitespace-nowrap text-sm font-Inter font-medium tracking-[0.47058823704719543] leading-[22.6px] text-[#507047] self-start ml-32 relative">
-         <span class="underline-offset-4 underline">Forgot Password</span>
+        <span class="underline-offset-4 underline">Forgot Password</span>
       </div>
     </div>
 

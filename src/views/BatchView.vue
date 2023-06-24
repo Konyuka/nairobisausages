@@ -42,9 +42,9 @@
         </div>
       </div>
       <div className="relative flex flex-col justify-start w-5/6 items-end px-24">
-        <div className="w-full h-1 bg-[#d9d9d9] absolute top-2 left-0 rounded-lg" />
-        <img src="https://file.rendit.io/n/2HXoeBkq9JDZ5AJDmX0S.svg" className="min-h-0 min-w-0 relative w-6" />
-      </div>
+          <div className="w-full h-1 bg-[#d9d9d9] absolute top-2 left-0 rounded-lg" />
+          <img src="https://file.rendit.io/n/2HXoeBkq9JDZ5AJDmX0S.svg" className="min-h-0 min-w-0 relative w-6" />
+        </div>
       <div className="flex flex-row justify-between mb-3 relative w-5/6 items-center">
         <div className="text-sm font-Inter font-semibold leading-[24.5px] text-black relative">
           0
@@ -54,7 +54,7 @@
         </div>
       </div>
       <div
-        className="text-sm font-sans tracking-[0.3764705955982208] leading-[15.1px] text-[#1c1b1f] self-start relative mb-px ml-6">
+        className="text-sm font-sans tracking-[0.3764705955982208] leading-[15.1px] text-[#1c1b1f] self-start relative mb-px ml-8">
         Breed
       </div>
       <div
@@ -64,38 +64,28 @@
         </div>
         <img src="https://file.rendit.io/n/tdnG8YHOXuWmVslPiigG.svg" className="min-h-0 min-w-0 relative w-2 shrink-0" />
       </div>
+      
       <div
-        className="text-sm font-sans tracking-[0.3764705955982208] leading-[15.1px] text-[#1c1b1f] self-start relative mb-px ml-6">
+        className="text-sm font-sans tracking-[0.3764705955982208] leading-[15.1px] text-[#1c1b1f] self-start relative mb-px ml-8">
         Age
       </div>
+      <input
+        className="overflow-hidden bg-[#eeeeee] flex flex-col justify-center mb-2 pl-5 relative w-5/6 h-12 shrink-0 items-start rounded" placeholder="6 Months" />
+        
       <div
-        className="overflow-hidden bg-[#eeeeee] flex flex-col justify-center mb-2 pl-5 relative w-5/6 h-12 shrink-0 items-start rounded">
-        <div
-          className="whitespace-nowrap font-Inter tracking-[0.47058823704719543] leading-[22.6px] text-[#595959] relative">
-          6 months
-        </div>
-      </div>
-      <div
-        className="whitespace-nowrap text-sm font-sans tracking-[0.3764705955982208] leading-[15.1px] text-[#1c1b1f] self-start relative mb-px ml-6">
+        className="whitespace-nowrap text-sm font-sans tracking-[0.3764705955982208] leading-[15.1px] text-[#1c1b1f] self-start relative mb-px ml-8">
         Average weight
       </div>
+      <input
+        className="overflow-hidden bg-[#eeeeee] flex flex-col justify-center mb-2 pl-5 relative w-5/6 h-12 shrink-0 items-start rounded" placeholder="120 kgs" />
+        
       <div
-        className="overflow-hidden bg-[#eeeeee] flex flex-col justify-center mb-2 pl-5 relative w-5/6 h-12 shrink-0 items-start rounded">
-        <div
-          className="whitespace-nowrap font-Inter tracking-[0.47058823704719543] leading-[22.6px] text-[#595959] relative">
-          120 kgs
-        </div>
-      </div>
-      <div
-        className="whitespace-nowrap text-sm font-sans tracking-[0.3764705955982208] leading-[15.1px] text-[#1c1b1f] self-start relative mb-px ml-6">
+        className="whitespace-nowrap text-sm font-sans tracking-[0.3764705955982208] leading-[15.1px] text-[#1c1b1f] self-start relative mb-px ml-8">
         Ask price per pig
       </div>
-      <div
-        className="overflow-hidden bg-[#eeeeee] flex flex-col justify-center mb-16 pl-5 relative w-5/6 h-12 shrink-0 items-start rounded">
-        <div className="font-Inter tracking-[0.47058823704719543] leading-[22.6px] text-[#9d9d9d] relative">
-          0.00
-        </div>
-      </div>
+      <input
+        className="overflow-hidden bg-[#eeeeee] flex flex-col justify-center mb-16 pl-5 relative w-5/6 h-12 shrink-0 items-start rounded" placeholder="0.00"/>
+        
       <div
         className="overflow-hidden bg-[#212427] flex flex-col justify-center relative w-5/6 h-12 shrink-0 items-center rounded-[40px]">
         <div
@@ -106,3 +96,5 @@
     </div>
   </main>
 </template>
+
+<style></style>

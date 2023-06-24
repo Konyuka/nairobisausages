@@ -1,3 +1,53 @@
+<script setup>
+import { onMounted } from "vue"
+import axios from "axios";
+import cheerio from 'cheerio';
+
+onMounted(()=>{
+  const url = 'https://www.noblepig.com';
+  axios.get(url).then(response => {
+    const $ = cheerio.load(response.data);
+    const blogElements = $('.entry-image-link');
+
+    const blogLinks = []
+    for (let index = 0; index < blogElements.length; index++) {
+      const element = blogElements[index];
+      blogLinks.push(element.attribs.href)
+    }
+
+    for (let index = 0; index < blogLinks.length; index++) {
+      const element = blogLinks[index];
+      axios.get(element).then(response =>{
+        const $ = cheerio.load(response.data);
+        const blogTitleElement = $('.post');
+        // const blogTitle = blogTitleElement[0]
+        const blogTitle = $(element).find('.entry-title').attr('');
+
+        // const blogTitle = blogTitleElement[0].children[0].data
+        // const blogImage = blogTitleElement
+        console.log(blogTitle)
+      })
+      return
+    }
+
+    // console.log(blogLinks)
+    
+    return 
+    blogElements.each((index, element) => {
+      const blog = {};
+      blog.link = $(element).find('.entry-image-link a').attr('href');
+      // blog.image = $(element).find('.entry-image img').attr('src');
+      // blog.title = $(element).find('.entry-title').text().trim();
+      this.blogs.push(blog);
+    });
+    console.log(blog)
+  }).catch(error => {
+    console.error('Error scraping blogs:', error);
+  });
+  
+})
+</script>
+
 <template>
   <main>
     <div className="overflow-hidden bg-[#ece9e7] flex flex-col justify-start gap-2 relative w-full h-[800px] items-center">
@@ -45,10 +95,10 @@
           Farms
         </div>
         <div className="flex flex-row justify-start ml-2 gap-2 relative w-20 items-center">
-          <div className="text-center text-3xl font-Inter font-semibold uppercase text-black mr-1 relative">
+          <div className="text-center text-3xl font-Inter font-semibold uppercase text-black mr-1 relative ">
             2
           </div>
-          <div className="border-solid border-[#9d9d9d] relative w-px shrink-0 h-4 borderr borderl-0 bordery-0 rounded-none" />
+          <div className="border-solid border-2 relative w-px shrink-0 h-4 borderr borderl-0 bordery-0 rounded-none" />
           <div className="whitespace-nowrap text-xs font-Inter font-semibold uppercase text-[#595959] relative">
             KIAMBU <br />
             COUNTY
@@ -68,18 +118,18 @@
           <div className="text-center text-3xl font-Inter font-semibold uppercase text-black relative">
             36
           </div>
-          <div className="border-solid border-[#9d9d9d] mr-px relative w-px shrink-0 h-4 borderr borderl-0 bordery-0 rounded-none" />
+          <div className="border-solid border-2 mr-px relative w-px shrink-0 h-4 borderr borderl-0 bordery-0 rounded-none" />
           <div className="text-xs font-Inter font-semibold uppercase text-[#595959] relative">
             LARGE
             <br />
             WHITE
           </div>
         </div>
-        <button className="overflow-hidden bg-[#507047] self-center flex flex-col justify-start relative h-8 shrink-0 items-center py-2 rounded-[50px]">
+        <router-link to="/submit_batch" className="overflow-hidden bg-[#507047] self-center flex flex-col justify-start relative h-8 shrink-0 items-center py-2 rounded-[50px]">
           <div className="whitespace-nowrap text-xs font-Inter font-bold text-white relative mx-8">
             Sell a Batch
           </div>
-        </button>
+        </router-link>
       </div>
     </div>
     <div className="text-sm font-Inter font-semibold leading-[24.5px] text-[#595959] self-start ml-4 relative">
