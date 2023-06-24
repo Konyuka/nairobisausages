@@ -1,48 +1,28 @@
 <script setup>
-import { onMounted } from "vue"
+import { onMounted, ref } from "vue"
 import axios from "axios";
-import cheerio from 'cheerio';
+
+const posts = ref(null)
+const tags = ref(null)
 
 onMounted(()=>{
-  const url = 'https://www.noblepig.com';
-  axios.get(url).then(response => {
-    const $ = cheerio.load(response.data);
-    const blogElements = $('.entry-image-link');
+  const postsUrl = 'https://www.noblepig.com/wp-json/wp/v2/posts';
+  const tagsUrl = 'https://www.noblepig.com/wp-json/wp/v2/tags';
 
-    const blogLinks = []
-    for (let index = 0; index < blogElements.length; index++) {
-      const element = blogElements[index];
-      blogLinks.push(element.attribs.href)
-    }
-
-    for (let index = 0; index < blogLinks.length; index++) {
-      const element = blogLinks[index];
-      axios.get(element).then(response =>{
-        const $ = cheerio.load(response.data);
-        const blogTitleElement = $('.post');
-        // const blogTitle = blogTitleElement[0]
-        const blogTitle = $(element).find('.entry-title').attr('');
-
-        // const blogTitle = blogTitleElement[0].children[0].data
-        // const blogImage = blogTitleElement
-        console.log(blogTitle)
-      })
-      return
-    }
-
-    // console.log(blogLinks)
-    
-    return 
-    blogElements.each((index, element) => {
-      const blog = {};
-      blog.link = $(element).find('.entry-image-link a').attr('href');
-      // blog.image = $(element).find('.entry-image img').attr('src');
-      // blog.title = $(element).find('.entry-title').text().trim();
-      this.blogs.push(blog);
-    });
-    console.log(blog)
+  axios.get(postsUrl).then(response => {
+    const postData = response.data.map(post => ({ id: post.id, title: post.title, tags: post.tags, link: post._links  }));
+    posts.value = postData
+    console.log(posts.value)
   }).catch(error => {
-    console.error('Error scraping blogs:', error);
+    console.error('Error scraping posts:', error);
+  });
+
+  axios.get(tagsUrl).then(response => {
+    const tagData = response.data.map(tag => ({ id: tag.id, name: tag.name }));
+    tags.value = tagData
+    // console.log(tags.value)
+  }).catch(error => {
+    console.error('Error scraping tags:', error);
   });
   
 })
