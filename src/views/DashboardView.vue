@@ -4,15 +4,31 @@ import axios from "axios";
 
 const posts = ref(null)
 const tags = ref(null)
+const imageUrls = ref(null)
 
-onMounted(()=>{
+const getImage =  async (url) => {
+  let returnUrl = null
+  await axios.get(url).then(({ response }) => {
+    return response.data.guid.rendered
+  }).catch(error => {
+    console.error('Error getting image:', error);
+  });
+  return returnUrl
+}
+
+
+onMounted( () => {
+
   const postsUrl = 'https://www.noblepig.com/wp-json/wp/v2/posts';
   const tagsUrl = 'https://www.noblepig.com/wp-json/wp/v2/tags';
 
   axios.get(postsUrl).then(response => {
     const postData = response.data.map(post => ({ id: post.id, title: post.title, tags: post.tags, link: post._links  }));
-    posts.value = postData
-    console.log(posts.value)
+    posts.value = postData.splice(0, 5);
+
+    const imageLinks = posts.value.map(post => ({  id: post.id, imageURL: getImage(post.link['wp:featuredmedia'][0].href) }))
+    imageUrls.value = imageLinks
+  // 
   }).catch(error => {
     console.error('Error scraping posts:', error);
   });
@@ -20,7 +36,6 @@ onMounted(()=>{
   axios.get(tagsUrl).then(response => {
     const tagData = response.data.map(tag => ({ id: tag.id, name: tag.name }));
     tags.value = tagData
-    // console.log(tags.value)
   }).catch(error => {
     console.error('Error scraping tags:', error);
   });
@@ -28,9 +43,11 @@ onMounted(()=>{
 })
 </script>
 
+
+
 <template>
   <main>
-    <div className="overflow-hidden bg-[#ece9e7] flex flex-col justify-start gap-2 relative w-full h-[800px] items-center">
+    <div className="overflow-hidden overflow-x-hidden bg-[#ece9e7] flex flex-col justify-start gap-2 relative w-full h-[800px] items-center">
     <div className="relative flex flex-col justify-end mb-4 pt-12 w-full items-center">
       <div className="w-full h-12 overflow-hidden bg-[#edeae7] absolute top-0 left-0 flex flex-row justify-start gap-1 items-end px-5 py-2">
         <div className="text-xs font-sans font-medium tracking-[0.12233009338378906] leading-[17.5px] text-[#1c1b1f] self-start relative mt-2 mr-64">
@@ -112,82 +129,37 @@ onMounted(()=>{
         </router-link>
       </div>
     </div>
+
     <div className="text-sm font-Inter font-semibold leading-[24.5px] text-[#595959] self-start ml-4 relative">
       Latest
     </div>
+    <div class="pb-10 overflow-y-auto">
+      <div v-for="(post, index) in posts" :key="index" className="bg-white flex flex-row justify-start gap-4 relative w-80 items-center px-2 rounded">
+        <img
+          :src="getImage(post.link['wp:featuredmedia'][0].href)"
+          className="min-h-0 min-w-0 relative my-2"
+        />
 
-    <div className="bg-white flex flex-row justify-start gap-4 relative w-80 items-center px-2 rounded">
-      <img
-        src="https://file.rendit.io/n/qmTfgDmvKgPOiWdFnYof.png"
-        className="min-h-0 min-w-0 relative my-2"
-      />
-      <div className="flex flex-col justify-start gap-3 relative w-2/5 items-center">
-        <div className="whitespace-nowrap text-sm font-Inter font-semibold text-black relative">
-          Banana chocolate <br />
-          chip muffins
-        </div>
-        <div className="flex flex-row justify-start gap-1 relative w-full items-center">
-          <div className="border-solid border-[rgba(244,_208,_82,_0.9)] overflow-hidden bg-[rgba(243,_208,_82,_0.2)] flex flex-col justify-start relative w-12 shrink-0 h-4 items-center py-px border rounded-[40px]">
-            <div className="text-xs font-Inter font-semibold text-black/50 relative">
-              Banana
-            </div>
+        <div className="flex flex-col justify-start gap-3 relative w-2/5 items-center">
+          <div className="text-sm font-Inter font-semibold text-black relative">
+            <span class="">{{ post.title.rendered }}</span>
           </div>
-          <div className="border-solid border-[rgba(153,_64,_0,_0.9)] overflow-hidden bg-[rgba(153,_64,_0,_0.14)] flex flex-col justify-start relative w-16 shrink-0 h-4 items-center py-px border rounded-[40px]">
-            <div className="text-xs font-Inter font-semibold text-black/20 relative">
-              Chocolate
+          <div className="flex flex-row justify-start gap-1 relative w-full items-center">
+            <div className="border-solid border-[rgba(244,_208,_82,_0.9)] overflow-hidden bg-[rgba(243,_208,_82,_0.2)] flex flex-col justify-start relative w-12 shrink-0 h-4 items-center py-px border rounded-[40px]">
+              <div className="text-xs font-Inter font-semibold text-black/50 relative">
+                Banana
+              </div>
+            </div>
+            <div className="border-solid border-[rgba(153,_64,_0,_0.9)] overflow-hidden bg-[rgba(153,_64,_0,_0.14)] flex flex-col justify-start relative w-16 shrink-0 h-4 items-center py-px border rounded-[40px]">
+              <div className="text-xs font-Inter font-semibold text-black/20 relative">
+                Chocolate
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div className="bg-white flex flex-row justify-start gap-4 relative w-80 items-center px-2 rounded">
-      <img
-        src="https://file.rendit.io/n/4SPm344EhkxCVhR8hhst.png"
-        className="min-h-0 min-w-0 relative my-2"
-      />
-      <div className="flex flex-col justify-start gap-3 relative w-2/5 items-center">
-        <div className="whitespace-nowrap text-sm font-Inter font-semibold text-black relative">
-          Overnight breakfast
-          <br />
-          casserole
-        </div>
-        <div className="flex flex-row justify-start gap-1 relative w-full items-center">
-          <div className="border-solid border-[rgba(244,_150,_82,_0.9)] overflow-hidden bg-[rgba(244,_150,_82,_0.2)] flex flex-col justify-start relative w-16 shrink-0 h-4 items-center py-px border rounded-[40px]">
-            <div className="text-xs font-Inter font-semibold text-black/30 relative">
-              Casserole
-            </div>
-          </div>
-          <div className="border-solid border-[rgba(95,_0,_153,_0.9)] overflow-hidden bg-[rgba(95,_0,_153,_0.14)] flex flex-col justify-start relative w-16 shrink-0 h-4 items-center py-px border rounded-[40px]">
-            <div className="text-xs font-Inter font-semibold text-black/30 relative">
-              Breakfast
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div className="bg-white flex flex-row justify-start gap-4 relative w-80 items-center pb-2 px-2 rounded">
-      <img
-        src="https://file.rendit.io/n/7uYDqCIY25p5xuqXO2np.png"
-        className="min-h-0 min-w-0 mt-2 relative"
-      />
-      <div className="self-end flex flex-col justify-start mb-2 gap-5 relative w-2/5 h-12 items-center">
-        <div className="whitespace-nowrap text-sm font-Inter font-semibold text-black relative">
-          Blueberry Margarita
-        </div>
-        <div className="flex flex-row justify-start gap-1 relative w-full items-center">
-          <div className="border-solid border-[rgba(82,_137,_244,_0.9)] overflow-hidden bg-[rgba(82,_137,_244,_0.2)] flex flex-col justify-start relative w-16 shrink-0 h-4 items-center py-px border rounded-[40px]">
-            <div className="text-xs font-Inter font-semibold text-black/30 relative">
-              Blueberry
-            </div>
-          </div>
-          <div className="border-solid border-[#88022a] overflow-hidden bg-[rgba(136,_2,_42,_0.14)] flex flex-col justify-start relative w-16 shrink-0 h-4 items-center py-px border rounded-[40px]">
-            <div className="text-xs font-Inter font-semibold text-black/20 relative">
-              Margarita
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    
   </div>
   </main>
 </template>
