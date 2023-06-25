@@ -21,6 +21,8 @@ watch(posts, (newX)=>{
         console.error(err);
       });
   }
+
+
 })
 
 const tags = ref(null)
@@ -52,8 +54,6 @@ onMounted( () => {
   }).catch(error => {
     console.error('Error scraping tags:', error);
   });
-
-  
   
 })
 </script>
@@ -148,11 +148,11 @@ onMounted( () => {
     <div className="text-sm font-Inter font-semibold leading-[24.5px] text-[#595959] self-start ml-4 relative">
       Latest
     </div>
-    <div class="pb-10 overflow-y-auto">
+    <div class="pb-3 overflow-y-auto">
       <div v-for="(post, index) in posts" :key="index" className="mb-4 bg-white flex flex-row justify-start gap-4 relative w-80 items-center px-2 rounded">
         <img
           :src="getImage(post.id)"
-          className="h-32 w-32 min-h-0 min-w-0 relative my-2"
+          className="h-32 w-40 min-h-0 min-w-0 relative my-2"
         />
 
         <div className="flex flex-col justify-start gap-3 relative w-2/5 items-center">
@@ -160,11 +160,25 @@ onMounted( () => {
             <span class="">{{ post.title.rendered }}</span>
           </div>
           <div className="flex flex-row justify-start gap-1 relative w-full items-center">
-            <div className="border-solid border-[rgba(244,_208,_82,_0.9)] overflow-hidden bg-[rgba(243,_208,_82,_0.2)] flex flex-col justify-start relative w-12 shrink-0 h-4 items-center py-px border rounded-[40px]">
+
+            <span class="text-[10px] inline-flex items-center border-solid border-[rgba(244,_208,_82,_0.9)] bg-[rgba(243,_208,_82,_0.2)] text-black font-medium px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
+                  Banana
+              </span>
+            <span class="text-[10px] inline-flex items-center border-solid border-[rgba(153,_64,_0,_0.9)] bg-[rgba(153,_64,_0,_0.14)] text-black font-medium px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
+                  Chocolate
+              </span>
+
+            <!-- <div className="border-solid border-[rgba(244,_208,_82,_0.9)] overflow-hidden bg-[rgba(243,_208,_82,_0.2)] flex flex-col justify-start relative w-12 shrink-0 h-4 items-center py-px border rounded-[40px]">
               <div className="mb-1 text-xs font-Inter font-semibold text-black/50 relative">
                 Banana
               </div>
             </div>
+            <div className="border-solid border-[rgba(153,_64,_0,_0.9)] overflow-hidden bg-[rgba(153,_64,_0,_0.14)] flex flex-col justify-start relative w-16 shrink-0 h-4 items-center py-px border rounded-[40px]">
+                <div className="text-xs font-Inter font-semibold text-black/20 relative">
+                  Chocolate
+                </div>
+              </div> -->
+
             
           </div>
         </div>
