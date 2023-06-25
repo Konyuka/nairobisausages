@@ -1,21 +1,38 @@
 <script setup>
-import { onMounted, ref } from "vue"
+import { onMounted, ref, watch } from "vue"
 import axios from "axios";
 
 const posts = ref(null)
+watch(posts, (newX)=>{
+  
+  for (let index = 0; index < posts.value.length; index++) {
+    const element = posts.value[index];
+    axios.get(element.link['wp:featuredmedia'][0].href)
+      .then(response => {
+        let objectData = {
+          id: null,
+          imageLink: null
+        }
+        objectData.id = element.id
+        objectData.imageLink = response.data.guid.rendered
+        imageUrls.value.push(objectData)
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  }
+})
+
 const tags = ref(null)
-const imageUrls = ref(null)
+const imageUrls = ref([])
 
-const getImage =  async (url) => {
-  let returnUrl = null
-  await axios.get(url).then(({ response }) => {
-    return response.data.guid.rendered
-  }).catch(error => {
-    console.error('Error getting image:', error);
-  });
-  return returnUrl
+const getImage = (postId) => {
+  const obj = imageUrls.value.find(o => o.id === postId);
+  if(obj){
+    return obj.imageLink
+  }
+
 }
-
 
 onMounted( () => {
 
@@ -25,10 +42,6 @@ onMounted( () => {
   axios.get(postsUrl).then(response => {
     const postData = response.data.map(post => ({ id: post.id, title: post.title, tags: post.tags, link: post._links  }));
     posts.value = postData.splice(0, 5);
-
-    const imageLinks = posts.value.map(post => ({  id: post.id, imageURL: getImage(post.link['wp:featuredmedia'][0].href) }))
-    imageUrls.value = imageLinks
-  // 
   }).catch(error => {
     console.error('Error scraping posts:', error);
   });
@@ -39,6 +52,8 @@ onMounted( () => {
   }).catch(error => {
     console.error('Error scraping tags:', error);
   });
+
+  
   
 })
 </script>
@@ -134,10 +149,10 @@ onMounted( () => {
       Latest
     </div>
     <div class="pb-10 overflow-y-auto">
-      <div v-for="(post, index) in posts" :key="index" className="bg-white flex flex-row justify-start gap-4 relative w-80 items-center px-2 rounded">
+      <div v-for="(post, index) in posts" :key="index" className="mb-4 bg-white flex flex-row justify-start gap-4 relative w-80 items-center px-2 rounded">
         <img
-          :src="getImage(post.link['wp:featuredmedia'][0].href)"
-          className="min-h-0 min-w-0 relative my-2"
+          :src="getImage(post.id)"
+          className="h-32 w-32 min-h-0 min-w-0 relative my-2"
         />
 
         <div className="flex flex-col justify-start gap-3 relative w-2/5 items-center">
@@ -146,15 +161,11 @@ onMounted( () => {
           </div>
           <div className="flex flex-row justify-start gap-1 relative w-full items-center">
             <div className="border-solid border-[rgba(244,_208,_82,_0.9)] overflow-hidden bg-[rgba(243,_208,_82,_0.2)] flex flex-col justify-start relative w-12 shrink-0 h-4 items-center py-px border rounded-[40px]">
-              <div className="text-xs font-Inter font-semibold text-black/50 relative">
+              <div className="mb-1 text-xs font-Inter font-semibold text-black/50 relative">
                 Banana
               </div>
             </div>
-            <div className="border-solid border-[rgba(153,_64,_0,_0.9)] overflow-hidden bg-[rgba(153,_64,_0,_0.14)] flex flex-col justify-start relative w-16 shrink-0 h-4 items-center py-px border rounded-[40px]">
-              <div className="text-xs font-Inter font-semibold text-black/20 relative">
-                Chocolate
-              </div>
-            </div>
+            
           </div>
         </div>
       </div>
